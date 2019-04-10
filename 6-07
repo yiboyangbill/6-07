@@ -1,0 +1,29 @@
+ display.newText( "guess my age", display.contentCenterX, 50, native.systemFont, 30 )
+
+    local answerTextField = native.newTextField( display.contentCenterX, display.contentCenterY + -120, 300, 40 )
+	answerTextField.id = "answerTextField"
+
+	local image = display.newImageRect( "enterButton.png", 150, 75 )
+	image.x = display.contentCenterX
+	image.y = 185
+	image.id = "calculatebutton"
+
+	display.newText( "age", display.contentCenterX, display.contentCenterY, native.systemFont, 30 )
+
+	local ageTextField = native.newTextField( display.contentCenterX, display.contentCenterY + 50, 300, 40 )
+	ageTextField.id = "ageTextField"
+	ageTextField.inputType="number"
+
+	local function calculateButtonTouch( event )
+		local age = tonumber(ageTextField.text)
+		
+		if age == 15 then
+			answerTextField.text = "You got right"
+			else if age < 15 then
+				answerTextField.text =  "You guessed too small"
+			else
+				answerTextField.text =  "You guessed too big"
+			end
+		end
+	end
+image:addEventListener( "touch", calculateButtonTouch )
